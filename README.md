@@ -1,37 +1,47 @@
-## Welcome to GitHub Pages
+#CAPÍTULO 1
+##2.4.	 MATERIAL AND METHODS
+###2.4.1.Comparative morphology
+Multivariate analysis of variance (MANOVA) with a Canonical Variate Analysis (CVA).
 
-You can use the [editor on GitHub](https://github.com/LucianoFBNeto/LucianoFBNeto.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Packages used `ggplot2` (Wickham 2016), `ggord` (Beck 2017) and `MASS` (Ripley *et al*. 2020).
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Data available on my [Github](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
 
-### Markdown
+```{r echo=FALSE}
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+#Open data
+setwd("C:/Users/Luciano/Desktop/R_MarkDown")
+data1=read.table("Data3.txt",header=TRUE)
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+```{r }
+#Categorizing the data
+data2=data1[,4:21]
+quali=data1[,3]
+```
 
-### Jekyll Themes
+```{r warning=FALSE}
+#Open Packages
+library(ggplot2)
+library(ggord)
+library(MASS)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/LucianoFBNeto/LucianoFBNeto.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+```
 
-### Support or Contact
+```{r }
+#Standardize the data
+data3=scale(data2)
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+#Perform the CVA
+cva=lda(data3, quali)
+
+#Standard graphic of `ggplot2` package
+ggord(cva, quali) 
+
+#Graph with shape and color adjustments in `ggord` package
+p <- ggord(cva, quali, poly = TRUE, ellipse=FALSE, hull=TRUE, polylntyp = quali, cols = c("#FF7F00","#1F78B4", "#B15928","#33A02C","#A6CEE3","#E31A1C"), size=3)
+p + scale_shape_manual('Groups', values = c(25, 25, 25,6,25,25))
+```
+
+
