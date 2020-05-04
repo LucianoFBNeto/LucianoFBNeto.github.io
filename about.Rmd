@@ -2,4 +2,4 @@
 title: "about"
 ---
 
-# Rotinas usadas na minha tese de doutorado
+# Rotinas usadas na minha tese de doutorado.
