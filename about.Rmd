@@ -1,0 +1,5 @@
+---
+title: "about"
+---
+
+# Rotinas usadas na minha tese de doutorado
