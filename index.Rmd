@@ -209,6 +209,3 @@ Morphometric and meristic data plotted with a heat map associated with molecular
 
 Data available on my [Github](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
 
-```{r }
-
-```

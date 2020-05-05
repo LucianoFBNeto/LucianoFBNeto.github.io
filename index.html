@@ -343,6 +343,13 @@ library(ggplot2)
 library(ggord)
 library(MASS)
 library(usdm)</code></pre>
+<pre><code>## Loading required package: sp</code></pre>
+<pre><code>## Loading required package: raster</code></pre>
+<pre><code>## 
+## Attaching package: &#39;raster&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:MASS&#39;:
+## 
+##     area, select</code></pre>
 <pre class="r"><code>#Categorizing the data
 data2=data1[,4:21]
 quali=data1[,3]
@@ -412,11 +419,50 @@ p + scale_shape_manual(&#39;Groups&#39;, values = c(25, 25, 25,6,25,25))</code><
 <h3>2.4.2. Phylogenetic analysis</h3>
 <p>For a better comparison of genes trees, the two phylogenies were plotted face to face using combined functions for analyzing and visualizing phylogenies from the R packages <code>ape</code> (Paradis, Claude &amp; Strimmer, 2004), <code>phytools</code> (Revell, 2014), <code>ggplot2</code> (Wickham, 2016), <code>ggtree</code> (Yu <em>et al</em>. 2017), <code>cowplot</code> (Wilke 2019), <code>dplyr</code> (Wickham <em>et al</em>. 2019) and <code>treeio</code> (Yu, 2019).</p>
 <p>Data available on my <a href="https://github.com/LucianoFBNeto/Tese_LucianoFBNeto">Github</a>.</p>
-<pre class="r"><code>library(ggtree)
-library(ggplot2)
-library(dplyr)
-library(cowplot)
-library(treeio)</code></pre>
+<pre class="r"><code>library(ggtree)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;treeio&#39;:
+##   method     from
+##   root.phylo ape</code></pre>
+<pre><code>## ggtree v1.17.4  For help: https://yulab-smu.github.io/treedata-book/
+## 
+## If you use ggtree in published research, please cite the most appropriate paper(s):
+## 
+## [36m-[39m Guangchuang Yu, Tommy Tsan-Yuk Lam, Huachen Zhu, Yi Guan. Two methods for mapping and visualizing associated data on phylogeny using ggtree. Molecular Biology and Evolution 2018, accepted. doi: 10.1093/molbev/msy194[36m-[39m Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam. ggtree: an R package for visualization and annotation of phylogenetic trees with their covariates and other associated data. Methods in Ecology and Evolution 2017, 8(1):28-36, doi:10.1111/2041-210X.12628</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggtree&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:raster&#39;:
+## 
+##     flip, rotate</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:raster&#39;:
+## 
+##     intersect, select, union</code></pre>
+<pre><code>## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     select</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(cowplot)</code></pre>
+<pre><code>## 
+## ********************************************************</code></pre>
+<pre><code>## Note: As of version 1.0.0, cowplot does not change the</code></pre>
+<pre><code>##   default ggplot2 theme anymore. To recover the previous</code></pre>
+<pre><code>##   behavior, execute:
+##   theme_set(theme_cowplot())</code></pre>
+<pre><code>## ********************************************************</code></pre>
+<pre class="r"><code>library(treeio)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;treeio&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:raster&#39;:
+## 
+##     mask</code></pre>
 <pre class="r"><code># Phylogenetic tree 1 -----------------------------------------------------
 p1 &lt;- ggtree(x) %&lt;+% info + xlim(0, 40)
 p2 &lt;- p1 + geom_tiplab(offset = 2.5, hjust = .5) +

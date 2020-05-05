@@ -2,4 +2,4 @@
 title: "about"
 ---
 
-# Rotinas usadas na minha tese de doutorado.
+# Rotinas utilizadas na minha tese de doutorado entitulada: Taxonomia integrativa dos cascudinhos do gênero Parotocinclus Eigenmann & Eigenmann (Siluriformes: Loricariidae) do Nordeste do Brasil.
