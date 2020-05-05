@@ -1,53 +1,19 @@
 ---
 title: "Luciano de Freitas Barros Neto"
+author: "Routines used in my thesis"
+
 ---
 
+###[**e-mail**](mailto:cdp_Luciano@hotmail.com)
 
-#CAPÍTULO 1
-##2.4.	 MATERIAL AND METHODS
-###2.4.1.Comparative morphology
-Multivariate analysis of variance (MANOVA) with a Canonical Variate Analysis (CVA).
+###[**Lattes**](http://lattes.cnpq.br/5456133978045879)
 
-Packages used `ggplot2` (Wickham 2016), `ggord` (Beck 2017) and `MASS` (Ripley *et al*. 2020).
+###[**Github**](https://github.com/LucianoFBNeto)
 
-Data available on my [Github](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
 
-```{r echo=FALSE}
 
-#Open data
-setwd("C:/Users/Luciano/Desktop/R_MarkDown")
-data1=read.table("Data3.txt",header=TRUE)
+###In my doctoral thesis I worked with taxonomy, phylogeny and biogeography of a freshwater small armored catfish of genus *Parotocinclus*, in the Northeast region of Brazil. My thesis is divided into 3 chapters and part of analyzes were carried out in R.
 
-```
-
-```{r }
-#Categorizing the data
-data2=data1[,4:21]
-quali=data1[,3]
-```
-
-```{r warning=FALSE}
-#Open Packages
-library(ggplot2)
-library(ggord)
-library(MASS)
-
-```
-
-```{r }
-#Standardize the data
-data3=scale(data2)
-
-#Perform the CVA
-cva=lda(data3, quali)
-
-#Standard graphic of `ggplot2` package
-ggord(cva, quali) 
-
-#Graph with shape and color adjustments in `ggord` package
-p <- ggord(cva, quali, poly = TRUE, ellipse=FALSE, hull=TRUE, polylntyp = quali, cols = c("#FF7F00","#1F78B4", "#B15928","#33A02C","#A6CEE3","#E31A1C"), size=3)
-p + scale_shape_manual('Groups', values = c(25, 25, 25,6,25,25))
-```
 
 
 #CHAPTER 1
@@ -66,7 +32,7 @@ Data available on my [Github](https://github.com/LucianoFBNeto/Tese_LucianoFBNet
 
 #Open data
 setwd("C:/Users/Luciano/Desktop/R_MarkDown")
-data1=read.table("Data3.txt",header=TRUE)
+data1=read.table("Data1.txt",header=TRUE)
 
 ```
 
@@ -81,8 +47,8 @@ library(usdm)
 
 ```{r }
 #Categorizing the data
-data2=data1[,4:21]
-quali=data1[,3]
+data2=data1[-51,c(-1,-2,-3,-6,-10,-13,-16,-19)]
+quali=data1[-51,2]
 
 #Viff
 vif(data2) # calculates vif for the variables in r
@@ -100,8 +66,9 @@ cva=lda(data3, quali)
 ggord(cva, quali) 
 
 #Graph with shape and color adjustments in `ggord` package
-p <- ggord(cva, quali, poly = TRUE, ellipse=FALSE, hull=TRUE, polylntyp = quali, cols = c("#FF7F00","#1F78B4", "#B15928","#33A02C","#A6CEE3","#E31A1C"), size=3)
-p + scale_shape_manual('Groups', values = c(25, 25, 25,6,25,25))
+p <- ggord(cva, quali, poly = TRUE, ellipse=FALSE, hull=TRUE, polylntyp = quali, cols = c('#4DAF4A','#984EA3','#A65628', '#4DAF4A'))
+p
+p + scale_shape_manual('Groups', values = c(23,5, 3, 2))
 ```
 
 
@@ -125,11 +92,11 @@ library(cowplot)
 library(treeio)
 ```
 
-```{r warning=FALSE, echo=FALSE}
+```{r warning=FALSE}
 #Open data
 setwd("C:/Users/Luciano/Desktop/R_MarkDown")
-x = read.tree("CYTBBAYES.tree")
-y = read.tree("COIBAYES.tree")
+x <- read.tree("CYTBBAYES.tree")
+y <- read.tree("COIBAYES.tree")
 info <- read.csv("basin.csv")
 
 x <- read.beast("CYTBBAYES.tre")
@@ -209,3 +176,164 @@ Morphometric and meristic data plotted with a heat map associated with molecular
 
 Data available on my [Github](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
 
+```{r echo=FALSE}
+#Open data
+setwd("C:/Users/Luciano/Desktop/R_MarkDown")
+
+```
+
+```{r warning=FALSE}
+library("ape")
+library("ggtree")
+library("ggplot2")
+library("ggnewscale")
+library('phytools')
+library('treeio')
+```
+
+```{r warning=FALSE}
+#Opening and Categorizing the data
+setwd("C:/Users/Luciano/Desktop/R_MarkDown")
+beast_tree <- read.beast("Morfo_filo.tree")
+genotype <- read.table("Data2.txt", header=TRUE, row.names = 1)
+df <- genotype[,1:2]
+df2 <- as.data.frame(scale(genotype[,3:15]))
+```
+
+```{r }
+#Plot tree
+p <- ggtree(beast_tree, aes(x='Node_ages')) + theme_tree2() + scale_x_continuous(labels = abs)
+p1 <- revts(p)
+plot(p1)
+```
+
+```{r }
+#Plot tips names
+p2 <- p1 + geom_tiplab(size=4, align=TRUE)
+plot(p2)
+```
+
+```{r }
+#Creating heatmap with discrete data associated with the tree
+p3 <- (p2 + scale_y_continuous(expand=c(0, 0.3))) %>%
+  gheatmap(df, offset=9, width=0.1, colnames=FALSE)+
+  scale_fill_viridis_d(option="D", name="discrete\nvalue") 
+```
+
+```{r }
+#Creating heatmap with continuous data associated with the tree
+p4 <- p3 + new_scale_fill()
+gheatmap(p4, df2, offset=13.5, width=0.8,
+         colnames=FALSE) +
+  scale_fill_viridis_c(option="B", name="continuous\nvalue") + scale_x_ggtree()
+```
+
+
+#CHAPTER 3
+
+##4.4. MATERIAL AND METHODS
+
+###4.4.1. Morphological analysis
+
+Multivariate analysis of variance (MANOVA) with a Canonical Variate Analysis (CVA).
+
+Packages used `ggplot2` (Wickham 2016), `ggord` (Beck 2017) and `MASS` (Ripley *et al*. 2020). Variance inflation factor (VIF) values were evaluated using package `usdm` (Naimi *et al*. 2014).
+
+Data available on my [Github](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
+
+```{r echo=FALSE}
+
+#Open data
+setwd("C:/Users/Luciano/Desktop/R_MarkDown")
+data1=read.table("Data3.txt",header=TRUE)
+
+```
+
+
+```{r warning=FALSE}
+#Open Packages
+library(ggplot2)
+library(ggord)
+library(MASS)
+library(usdm)
+```
+
+```{r }
+#Categorizing the data
+data2=data1[,4:21]
+quali=data1[,3]
+
+#Viff
+vif(data2) # calculates vif for the variables in r
+vifcor(data2, th=0.9) # identify collinear variables that should be excluded
+```
+
+```{r }
+#Standardize the data
+data3=scale(data2)
+
+#Perform the CVA
+cva=lda(data3, quali)
+
+#Standard graphic of `ggplot2` package
+ggord(cva, quali) 
+
+#Graph with shape and color adjustments in `ggord` package
+p <- ggord(cva, quali, poly = TRUE, ellipse=FALSE, hull=TRUE, polylntyp = quali, cols = c("#FF7F00","#1F78B4", "#B15928","#33A02C","#A6CEE3","#E31A1C"), size=3)
+p + scale_shape_manual('Groups', values = c(25, 25, 25,6,25,25))
+```
+
+###4.4.5. Phylogenetic analyzes and molecular clock
+
+Morphometric and meristic data plotted with a heat map associated with molecular data using combined functions to analyze and visualize phylogenies using the packages `ape` (Paradis *et al*. 2004), `phytools` (Revell 2014), `treeio` (Yu 2019), `ggtree` (Yu *et al*. 2017), `ggplot2` (Wickham 2016) and `ggnewscale` (Campitelli 2016).
+
+Data available on my [Github](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
+
+
+```{r echo=FALSE}
+
+#Open data
+setwd("C:/Users/Luciano/Desktop/R_MarkDown")
+```
+
+
+```{r warning=FALSE}
+library("ggtree")
+library("ggplot2")
+library(treeio)
+library("ggnewscale")
+library(phytools)
+library(dichromat)
+```
+
+```{r warning=FALSE}
+#Opening and Categorizing the data
+setwd("C:/Users/Luciano/Desktop/R_MarkDown")
+beast_tree <- read.beast("Jumbo_morfo.tree")
+genotype <- read.table("Data3_1.txt", header=TRUE, row.names = 1)
+df2 <- as.data.frame(scale(genotype[,1:18]))
+```
+
+```{r }
+#Plot tree
+beast_tree
+p <- ggtree(beast_tree, aes(x='Node_ages')) + theme_tree2() + scale_x_continuous(labels = abs) +
+  geom_nodelab(aes(x=branch), vjust=-.5, size=3, color="black") + 
+  geom_range('height_0.95_HPD', color='grey', alpha=.8, size=3)
+p1 <- revts(p)
+plot(p1)
+```
+
+```{r }
+#Plot tips names
+p2 <- p1 + geom_tiplab(size=4, align=TRUE)
+plot(p2)
+```
+
+```{r }
+#Creating heatmap with continuous data associated with the tree
+gheatmap(p2, df2, offset=4.5, width=4,
+         colnames=FALSE) +
+  scale_fill_viridis_c(option="B", name="continuous\nvalue") + 
+  scale_x_ggtree()
+```
