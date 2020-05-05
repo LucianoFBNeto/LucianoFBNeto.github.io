@@ -329,6 +329,209 @@ p + scale_shape_manual(&#39;Groups&#39;, values = c(25, 25, 25,6,25,25))</code><
 </div>
 </div>
 </div>
+<div id="chapter-1" class="section level1">
+<h1>CHAPTER 1</h1>
+<div id="material-and-methods-1" class="section level2">
+<h2>2.4. MATERIAL AND METHODS</h2>
+<div id="comparative-morphology-1" class="section level3">
+<h3>2.4.1. Comparative morphology</h3>
+<p>Multivariate analysis of variance (MANOVA) with a Canonical Variate Analysis (CVA).</p>
+<p>Packages used <code>ggplot2</code> (Wickham 2016), <code>ggord</code> (Beck 2017) and <code>MASS</code> (Ripley <em>et al</em>. 2020). Variance inflation factor (VIF) values were evaluated using package <code>usdm</code> (Naimi <em>et al</em>. 2014).</p>
+<p>Data available on my <a href="https://github.com/LucianoFBNeto/Tese_LucianoFBNeto">Github</a>.</p>
+<pre class="r"><code>#Open Packages
+library(ggplot2)
+library(ggord)
+library(MASS)
+library(usdm)</code></pre>
+<pre><code>## Loading required package: sp</code></pre>
+<pre><code>## Loading required package: raster</code></pre>
+<pre><code>## 
+## Attaching package: &#39;raster&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:MASS&#39;:
+## 
+##     area, select</code></pre>
+<pre class="r"><code>#Categorizing the data
+data2=data1[,4:21]
+quali=data1[,3]
+
+#Viff
+vif(data2) # calculates vif for the variables in r</code></pre>
+<pre><code>##    Variables       VIF
+## 1         BD 11.423268
+## 2         HL 48.421409
+## 3         CW 11.975266
+## 4         TL  5.388162
+## 5        AbL 10.949612
+## 6         PL  4.110722
+## 7        CPD 10.331358
+## 8        CPL 14.919976
+## 9        PdL 43.614464
+## 10        HD 14.493862
+## 11       SNL 29.125725
+## 12        OD  1.935570
+## 13        IW  8.574534
+## 14      AdCD  3.280936
+## 15      AnCD  2.480605
+## 16      PAdD 45.093350
+## 17        DL  4.545348
+## 18        MR  3.517378</code></pre>
+<pre class="r"><code>vifcor(data2, th=0.9) # identify collinear variables that should be excluded</code></pre>
+<pre><code>## 5 variables from the 18 input variables have collinearity problem: 
+##  
+## PAdD HL PdL HD SNL 
+## 
+## After excluding the collinear variables, the linear correlation coefficients ranges between: 
+## min correlation ( MR ~ PL ):  0.06207773 
+## max correlation ( CPL ~ AbL ):  0.898937 
+## 
+## ---------- VIFs of the remained variables -------- 
+##    Variables       VIF
+## 1         BD  6.293153
+## 2         CW  9.375385
+## 3         TL  3.572072
+## 4        AbL  9.507596
+## 5         PL  3.101434
+## 6        CPD  8.687367
+## 7        CPL 11.593698
+## 8         OD  1.497655
+## 9         IW  6.530378
+## 10      AdCD  2.881833
+## 11      AnCD  2.391239
+## 12        DL  3.861501
+## 13        MR  2.663421</code></pre>
+<pre class="r"><code>#Standardize the data
+data3=scale(data2)
+
+#Perform the CVA
+cva=lda(data3, quali)
+
+#Standard graphic of `ggplot2` package
+ggord(cva, quali) </code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>#Graph with shape and color adjustments in `ggord` package
+p &lt;- ggord(cva, quali, poly = TRUE, ellipse=FALSE, hull=TRUE, polylntyp = quali, cols = c(&quot;#FF7F00&quot;,&quot;#1F78B4&quot;, &quot;#B15928&quot;,&quot;#33A02C&quot;,&quot;#A6CEE3&quot;,&quot;#E31A1C&quot;), size=3)
+p + scale_shape_manual(&#39;Groups&#39;, values = c(25, 25, 25,6,25,25))</code></pre>
+<pre><code>## Scale for &#39;shape&#39; is already present. Adding another scale for &#39;shape&#39;,
+## which will replace the existing scale.</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+</div>
+<div id="phylogenetic-analysis" class="section level3">
+<h3>2.4.2. Phylogenetic analysis</h3>
+<p>For a better comparison of genes trees, the two phylogenies were plotted face to face using combined functions for analyzing and visualizing phylogenies from the R packages <code>ape</code> (Paradis, Claude &amp; Strimmer, 2004), <code>phytools</code> (Revell, 2014), <code>ggplot2</code> (Wickham, 2016), <code>ggtree</code> (Yu <em>et al</em>. 2017), <code>cowplot</code> (Wilke 2019), <code>dplyr</code> (Wickham <em>et al</em>. 2019) and <code>treeio</code> (Yu, 2019).</p>
+<p>Data available on my <a href="https://github.com/LucianoFBNeto/Tese_LucianoFBNeto">Github</a>.</p>
+<pre class="r"><code>library(ggtree)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;treeio&#39;:
+##   method     from
+##   root.phylo ape</code></pre>
+<pre><code>## ggtree v1.17.4  For help: https://yulab-smu.github.io/treedata-book/
+## 
+## If you use ggtree in published research, please cite the most appropriate paper(s):
+## 
+## [36m-[39m Guangchuang Yu, Tommy Tsan-Yuk Lam, Huachen Zhu, Yi Guan. Two methods for mapping and visualizing associated data on phylogeny using ggtree. Molecular Biology and Evolution 2018, accepted. doi: 10.1093/molbev/msy194[36m-[39m Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam. ggtree: an R package for visualization and annotation of phylogenetic trees with their covariates and other associated data. Methods in Ecology and Evolution 2017, 8(1):28-36, doi:10.1111/2041-210X.12628</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggtree&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:raster&#39;:
+## 
+##     flip, rotate</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:raster&#39;:
+## 
+##     intersect, select, union</code></pre>
+<pre><code>## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     select</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(cowplot)</code></pre>
+<pre><code>## 
+## ********************************************************</code></pre>
+<pre><code>## Note: As of version 1.0.0, cowplot does not change the</code></pre>
+<pre><code>##   default ggplot2 theme anymore. To recover the previous</code></pre>
+<pre><code>##   behavior, execute:
+##   theme_set(theme_cowplot())</code></pre>
+<pre><code>## ********************************************************</code></pre>
+<pre class="r"><code>library(treeio)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;treeio&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:raster&#39;:
+## 
+##     mask</code></pre>
+<pre class="r"><code># Phylogenetic tree 1 -----------------------------------------------------
+p1 &lt;- ggtree(x) %&lt;+% info + xlim(0, 40)
+p2 &lt;- p1 + geom_tiplab(offset = 2.5, hjust = .5) +
+  geom_tippoint(aes(shape = Species_group, color = Basin, size = 5)) +
+  scale_shape_manual(values=c(18, 5, 3, 6, 8, 1, 2, 0)) +
+  scale_color_manual(values=c(&#39;#984EA3&#39;,&#39;black&#39;, &#39;#377EB8&#39;,&#39;#A65628&#39;,
+                              &#39;#4DAF4A&#39;, &#39;#A6CEE3&#39;)) +
+  theme(legend.position = &quot;right&quot;) +
+  theme_tree2()
+
+p3 = revts(p2)
+p4 = p3 + scale_x_continuous()</code></pre>
+<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which
+## will replace the existing scale.</code></pre>
+<pre class="r"><code>plot(p4)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre class="r"><code># Phylogenetic tree 2 -----------------------------------------------------
+
+p5 &lt;- ggtree(y) %&lt;+% info + xlim(0, 40)
+p6 &lt;- p5 + geom_tiplab(offset = 2.5, hjust = .5) +
+  geom_tippoint(aes(shape = Species_group, color = Basin, size = 5)) +
+  scale_shape_manual(values=c(18, 5, 3, 6, 8, 1, 2, 0)) +
+  scale_color_manual(values=c(&#39;#984EA3&#39;,&#39;black&#39;, &#39;#377EB8&#39;,&#39;#A65628&#39;,
+                              &#39;#4DAF4A&#39;, &#39;#A6CEE3&#39;)) +
+  theme(legend.position = &quot;right&quot;) +
+  theme_tree2() #lembrar de remover esse ultimo comando no final#
+
+p7 &lt;- flip(p6, node1=13, node2=14)
+plot(p7)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<pre class="r"><code>p7 = revts(p7)
+p7 = p7 + scale_x_continuous()</code></pre>
+<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which
+## will replace the existing scale.</code></pre>
+<pre class="r"><code>plot(p7)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
+<pre class="r"><code>p7&lt;-p7+theme(legend.position=&quot;right&quot;)
+plot(p7)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-13-3.png" width="672" /></p>
+<pre class="r"><code># plot the 2 trees side by side --------------------------------------------
+cowplot::plot_grid(p4, p7, ncol=2, labels = c(&#39;CytB&#39;,&#39;Cox1&#39;))</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code># Final adjustment on trees -----------------------------------------------------
+d1 &lt;- p4$data
+d2 &lt;- p7$data
+
+d2$x &lt;- max(d2$x) - d2$x + max(d1$x) + 9
+
+pp &lt;- p4  + geom_tree(data=d2) + geom_tiplab(data = d2, hjust=2)
+
+dd &lt;- bind_rows(d1, d2) %&gt;% 
+  filter(!is.na(label))
+
+pp + geom_line(aes(x, y, group=label), data=dd, color=&#39;grey&#39;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="chapter-2" class="section level1">
+<h1>CHAPTER 2</h1>
+<div id="material-and-methods-2" class="section level2">
+<h2>3.4. MATERIAL AND METHODS</h2>
+<div id="phylogenetic-analyzes-and-molecular-clock" class="section level3">
+<h3>3.4.5. Phylogenetic analyzes and molecular clock</h3>
+<p>Morphometric and meristic data plotted with a heat map associated with molecular data using combined functions to analyze and visualize phylogenies using the packages <code>ape</code> (Paradis <em>et al</em>. 2004), <code>phytools</code> (Revell 2014), <code>treeio</code> (Yu 2019), <code>ggtree</code> (Yu <em>et al</em>. 2017), <code>ggplot2</code> (Wickham 2016) and <code>ggnewscale</code> (Campitelli 2016).</p>
+<p>Data available on my <a href="https://github.com/LucianoFBNeto/Tese_LucianoFBNeto">Github</a>.</p>
+</div>
+</div>
+</div>
 
 
 
