@@ -5,11 +5,7 @@ author: "Routines used in my thesis"
 ---
 
 
-###[**e-mail**](mailto:cdp_Luciano@hotmail.com)
-
-###[**Lattes**](http://lattes.cnpq.br/5456133978045879)
-
-###[**Github**](https://github.com/LucianoFBNeto)
+[![e-mail](C:/Users/Luciano/Documents/LucianoFBNeto.github.io/mail.png){width=30px}](mailto:cdp_Luciano@hotmail.com)         [![Lattes](C:/Users/Luciano/Documents/LucianoFBNeto.github.io/lattes.png){width=30px}](http://lattes.cnpq.br/5456133978045879)          [![GitHub](C:/Users/Luciano/Documents/LucianoFBNeto.github.io/github1.png){width=30px}](https://github.com/LucianoFBNeto)          [![ResearchGate](C:/Users/Luciano/Documents/LucianoFBNeto.github.io/RG1.png){width=30px}](https://www.researchgate.net/profile/Luciano_Barros-Neto)
 
 
 
@@ -27,7 +23,7 @@ Multivariate analysis of variance (MANOVA) with a Canonical Variate Analysis (CV
 
 Packages used `ggplot2` (Wickham 2016), `ggord` (Beck 2017) and `MASS` (Ripley *et al*. 2020). Variance inflation factor (VIF) values were evaluated using package `usdm` (Naimi *et al*. 2014).
 
-Data available on my [Github](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
+Data available on my [GitHub](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
 
 ```{r echo=FALSE}
 
@@ -77,7 +73,7 @@ p + scale_shape_manual('Groups', values = c(23,5, 3, 2))
 
 For a better comparison of genes trees, the two phylogenies were plotted face to face using combined functions for analyzing and visualizing phylogenies from the R packages `ape` (Paradis, Claude & Strimmer, 2004), `phytools` (Revell, 2014), `ggplot2` (Wickham, 2016), `ggtree` (Yu *et al*. 2017), `cowplot` (Wilke 2019), `dplyr` (Wickham *et al*. 2019) and `treeio` (Yu, 2019). 
 
-Data available on my [Github](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
+Data available on my [GitHub](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
 
 ```{r echo=FALSE}
 #Open data
@@ -175,7 +171,7 @@ pp + geom_line(aes(x, y, group=label), data=dd, color='grey')
 
 Morphometric and meristic data plotted with a heat map associated with molecular data using combined functions to analyze and visualize phylogenies using the packages `ape` (Paradis *et al*. 2004), `phytools` (Revell 2014), `treeio` (Yu 2019), `ggtree` (Yu *et al*. 2017), `ggplot2` (Wickham 2016) and `ggnewscale` (Campitelli 2016).
 
-Data available on my [Github](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
+Data available on my [GitHub](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
 
 ```{r echo=FALSE}
 #Open data
@@ -240,7 +236,7 @@ Multivariate analysis of variance (MANOVA) with a Canonical Variate Analysis (CV
 
 Packages used `ggplot2` (Wickham 2016), `ggord` (Beck 2017) and `MASS` (Ripley *et al*. 2020). Variance inflation factor (VIF) values were evaluated using package `usdm` (Naimi *et al*. 2014).
 
-Data available on my [Github](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
+Data available on my [GitHub](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
 
 ```{r echo=FALSE}
 
@@ -288,7 +284,7 @@ p + scale_shape_manual('Groups', values = c(25, 25, 25,6,25,25))
 
 Morphometric and meristic data plotted with a heat map associated with molecular data using combined functions to analyze and visualize phylogenies using the packages `ape` (Paradis *et al*. 2004), `phytools` (Revell 2014), `treeio` (Yu 2019), `ggtree` (Yu *et al*. 2017), `ggplot2` (Wickham 2016) and `ggnewscale` (Campitelli 2016).
 
-Data available on my [Github](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
+Data available on my [GitHub](https://github.com/LucianoFBNeto/Tese_LucianoFBNeto).
 
 
 ```{r echo=FALSE}

@@ -297,15 +297,7 @@ $(document).ready(function () {
 </div>
 
 
-<div id="e-mail" class="section level3">
-<h3><a href="mailto:cdp_Luciano@hotmail.com"><strong>e-mail</strong></a></h3>
-</div>
-<div id="lattes" class="section level3">
-<h3><a href="http://lattes.cnpq.br/5456133978045879"><strong>Lattes</strong></a></h3>
-</div>
-<div id="github" class="section level3">
-<h3><a href="https://github.com/LucianoFBNeto"><strong>Github</strong></a></h3>
-</div>
+<p><a href="mailto:cdp_Luciano@hotmail.com"><img src="mail.png" alt="e-mail" width="30" /></a> <a href="http://lattes.cnpq.br/5456133978045879"><img src="lattes.png" alt="Lattes" width="30" /></a> <a href="https://github.com/LucianoFBNeto"><img src="github1.png" alt="GitHub" width="30" /></a> <a href="https://www.researchgate.net/profile/Luciano_Barros-Neto"><img src="RG1.png" alt="ResearchGate" width="30" /></a></p>
 <div id="in-my-doctoral-thesis-i-worked-with-taxonomy-phylogeny-and-biogeography-of-a-freshwater-small-armored-catfish-of-genus-parotocinclus-in-the-northeast-region-of-brazil.-my-thesis-is-divided-into-3-chapters-and-part-of-analyzes-were-carried-out-in-r." class="section level3">
 <h3>In my doctoral thesis I worked with taxonomy, phylogeny and biogeography of a freshwater small armored catfish of genus <em>Parotocinclus</em>, in the Northeast region of Brazil. My thesis is divided into 3 chapters and part of analyzes were carried out in R.</h3>
 </div>
@@ -317,12 +309,24 @@ $(document).ready(function () {
 <h3>2.4.1. Comparative morphology</h3>
 <p>Multivariate analysis of variance (MANOVA) with a Canonical Variate Analysis (CVA).</p>
 <p>Packages used <code>ggplot2</code> (Wickham 2016), <code>ggord</code> (Beck 2017) and <code>MASS</code> (Ripley <em>et al</em>. 2020). Variance inflation factor (VIF) values were evaluated using package <code>usdm</code> (Naimi <em>et al</em>. 2014).</p>
-<p>Data available on my <a href="https://github.com/LucianoFBNeto/Tese_LucianoFBNeto">Github</a>.</p>
+<p>Data available on my <a href="https://github.com/LucianoFBNeto/Tese_LucianoFBNeto">GitHub</a>.</p>
 <pre class="r"><code>#Open Packages
 library(ggplot2)
 library(ggord)
-library(MASS)
-library(usdm)</code></pre>
+library(MASS)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
+## 
+##     genotype</code></pre>
+<pre class="r"><code>library(usdm)</code></pre>
+<pre><code>## Loading required package: sp</code></pre>
+<pre><code>## Loading required package: raster</code></pre>
+<pre><code>## 
+## Attaching package: &#39;raster&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:MASS&#39;:
+## 
+##     area, select</code></pre>
 <pre class="r"><code>#Categorizing the data
 data2=data1[-51,c(-1,-2,-3,-6,-10,-13,-16,-19)]
 quali=data1[-51,2]
@@ -386,12 +390,48 @@ p</code></pre>
 <div id="phylogenetic-analysis" class="section level3">
 <h3>2.4.2. Phylogenetic analysis</h3>
 <p>For a better comparison of genes trees, the two phylogenies were plotted face to face using combined functions for analyzing and visualizing phylogenies from the R packages <code>ape</code> (Paradis, Claude &amp; Strimmer, 2004), <code>phytools</code> (Revell, 2014), <code>ggplot2</code> (Wickham, 2016), <code>ggtree</code> (Yu <em>et al</em>. 2017), <code>cowplot</code> (Wilke 2019), <code>dplyr</code> (Wickham <em>et al</em>. 2019) and <code>treeio</code> (Yu, 2019).</p>
-<p>Data available on my <a href="https://github.com/LucianoFBNeto/Tese_LucianoFBNeto">Github</a>.</p>
-<pre class="r"><code>library(ggtree)
-library(ggplot2)
-library(dplyr)
-library(cowplot)
-library(treeio)</code></pre>
+<p>Data available on my <a href="https://github.com/LucianoFBNeto/Tese_LucianoFBNeto">GitHub</a>.</p>
+<pre class="r"><code>library(ggtree)</code></pre>
+<pre><code>## ggtree v1.17.4  For help: https://yulab-smu.github.io/treedata-book/
+## 
+## If you use ggtree in published research, please cite the most appropriate paper(s):
+## 
+## [36m-[39m Guangchuang Yu, Tommy Tsan-Yuk Lam, Huachen Zhu, Yi Guan. Two methods for mapping and visualizing associated data on phylogeny using ggtree. Molecular Biology and Evolution 2018, accepted. doi: 10.1093/molbev/msy194[36m-[39m Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam. ggtree: an R package for visualization and annotation of phylogenetic trees with their covariates and other associated data. Methods in Ecology and Evolution 2017, 8(1):28-36, doi:10.1111/2041-210X.12628</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggtree&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:raster&#39;:
+## 
+##     flip, rotate</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:raster&#39;:
+## 
+##     intersect, select, union</code></pre>
+<pre><code>## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     select</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(cowplot)</code></pre>
+<pre><code>## 
+## ********************************************************</code></pre>
+<pre><code>## Note: As of version 1.0.0, cowplot does not change the</code></pre>
+<pre><code>##   default ggplot2 theme anymore. To recover the previous</code></pre>
+<pre><code>##   behavior, execute:
+##   theme_set(theme_cowplot())</code></pre>
+<pre><code>## ********************************************************</code></pre>
+<pre class="r"><code>library(treeio)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;treeio&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:raster&#39;:
+## 
+##     mask</code></pre>
 <pre class="r"><code>#Open data
 setwd(&quot;C:/Users/Luciano/Desktop/R_MarkDown&quot;)
 x &lt;- read.tree(&quot;CYTBBAYES.tree&quot;)
@@ -467,13 +507,30 @@ pp + geom_line(aes(x, y, group=label), data=dd, color=&#39;grey&#39;)</code></pr
 <div id="phylogenetic-analyzes-and-molecular-clock" class="section level3">
 <h3>3.4.5. Phylogenetic analyzes and molecular clock</h3>
 <p>Morphometric and meristic data plotted with a heat map associated with molecular data using combined functions to analyze and visualize phylogenies using the packages <code>ape</code> (Paradis <em>et al</em>. 2004), <code>phytools</code> (Revell 2014), <code>treeio</code> (Yu 2019), <code>ggtree</code> (Yu <em>et al</em>. 2017), <code>ggplot2</code> (Wickham 2016) and <code>ggnewscale</code> (Campitelli 2016).</p>
-<p>Data available on my <a href="https://github.com/LucianoFBNeto/Tese_LucianoFBNeto">Github</a>.</p>
-<pre class="r"><code>library(&quot;ape&quot;)
-library(&quot;ggtree&quot;)
+<p>Data available on my <a href="https://github.com/LucianoFBNeto/Tese_LucianoFBNeto">GitHub</a>.</p>
+<pre class="r"><code>library(&quot;ape&quot;)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ape&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:treeio&#39;:
+## 
+##     drop.tip</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggtree&#39;:
+## 
+##     rotate</code></pre>
+<pre><code>## The following objects are masked from &#39;package:raster&#39;:
+## 
+##     rotate, zoom</code></pre>
+<pre class="r"><code>library(&quot;ggtree&quot;)
 library(&quot;ggplot2&quot;)
 library(&quot;ggnewscale&quot;)
-library(&#39;phytools&#39;)
-library(&#39;treeio&#39;)</code></pre>
+library(&#39;phytools&#39;)</code></pre>
+<pre><code>## Loading required package: maps</code></pre>
+<pre><code>## 
+## Attaching package: &#39;phytools&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:treeio&#39;:
+## 
+##     read.newick</code></pre>
+<pre class="r"><code>library(&#39;treeio&#39;)</code></pre>
 <pre class="r"><code>#Opening and Categorizing the data
 setwd(&quot;C:/Users/Luciano/Desktop/R_MarkDown&quot;)
 beast_tree &lt;- read.beast(&quot;Morfo_filo.tree&quot;)
@@ -523,7 +580,7 @@ gheatmap(p4, df2, offset=13.5, width=0.8,
 <h3>4.4.1. Morphological analysis</h3>
 <p>Multivariate analysis of variance (MANOVA) with a Canonical Variate Analysis (CVA).</p>
 <p>Packages used <code>ggplot2</code> (Wickham 2016), <code>ggord</code> (Beck 2017) and <code>MASS</code> (Ripley <em>et al</em>. 2020). Variance inflation factor (VIF) values were evaluated using package <code>usdm</code> (Naimi <em>et al</em>. 2014).</p>
-<p>Data available on my <a href="https://github.com/LucianoFBNeto/Tese_LucianoFBNeto">Github</a>.</p>
+<p>Data available on my <a href="https://github.com/LucianoFBNeto/Tese_LucianoFBNeto">GitHub</a>.</p>
 <pre class="r"><code>#Open Packages
 library(ggplot2)
 library(ggord)
@@ -597,7 +654,7 @@ p + scale_shape_manual(&#39;Groups&#39;, values = c(25, 25, 25,6,25,25))</code><
 <div id="phylogenetic-analyzes-and-molecular-clock-1" class="section level3">
 <h3>4.4.5. Phylogenetic analyzes and molecular clock</h3>
 <p>Morphometric and meristic data plotted with a heat map associated with molecular data using combined functions to analyze and visualize phylogenies using the packages <code>ape</code> (Paradis <em>et al</em>. 2004), <code>phytools</code> (Revell 2014), <code>treeio</code> (Yu 2019), <code>ggtree</code> (Yu <em>et al</em>. 2017), <code>ggplot2</code> (Wickham 2016) and <code>ggnewscale</code> (Campitelli 2016).</p>
-<p>Data available on my <a href="https://github.com/LucianoFBNeto/Tese_LucianoFBNeto">Github</a>.</p>
+<p>Data available on my <a href="https://github.com/LucianoFBNeto/Tese_LucianoFBNeto">GitHub</a>.</p>
 <pre class="r"><code>library(&quot;ggtree&quot;)
 library(&quot;ggplot2&quot;)
 library(treeio)
